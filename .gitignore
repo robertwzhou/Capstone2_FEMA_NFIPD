@@ -1,0 +1,4 @@
+.DS_Store
+.ipynb_checkpoints
+FimaNfipPoliciesV2.parquet
+sample_train_test.ipynb

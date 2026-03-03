@@ -1,0 +1,1 @@
+I got `FEMAtrain.parquet` and `FEMAtest.parquet` from a much larger parquet file (70+ million rows), which I got from https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2
