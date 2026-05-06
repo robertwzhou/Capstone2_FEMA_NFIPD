@@ -1,0 +1,46 @@
+--- FINAL MODEL METRICS REPORT ---
+Winning Model: RandomForest
+
+--- PERFORMANCE METRICS (TEST SET) ---
+Test MSE:  1779859.7177
+Test RMSE: 1334.1138
+Test MAE:  409.1102
+Test R2:   0.5058
+
+--- BEST HYPERPARAMETERS ---
+bootstrap: True
+ccp_alpha: 0.0
+criterion: squared_error
+max_depth: 20
+max_features: 1.0
+max_leaf_nodes: None
+max_samples: 0.1
+min_impurity_decrease: 0.0
+min_samples_leaf: 1
+min_samples_split: 2
+min_weight_fraction_leaf: 0.0
+monotonic_cst: None
+n_estimators: 100
+n_jobs: -1
+oob_score: False
+random_state: 42
+verbose: 0
+warm_start: False
+
+--- FEATURES USED ---
+1. policyCount
+2. totalBuildingInsuranceCoverage
+3. totalContentsInsuranceCoverage
+4. originalConstructionDate
+5. originalNBDate
+6. policyEffectiveDate
+7. policyTerminationDate
+8. elevatedBuildingIndicator
+9. postFIRMConstructionIndicator
+10. primaryResidenceIndicator
+11. mandatoryPurchaseFlag
+12. ratedFloodZone_X
+13. ratedFloodZone_AE
+14. coord_x
+15. coord_y
+16. coord_z
