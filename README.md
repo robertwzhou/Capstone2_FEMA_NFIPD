@@ -8,19 +8,17 @@
 5. [Modeling](#modeling)
 6. [Results & Findings](#results--findings)
 7. [Conclusion](#conclusion)
-8. [Future Steps](#future-steps)
-9. [Project Structure](#project-structure)
-10. [Getting Started](#getting-started)
+8. [Possible Future Steps](#possible-future-steps)
 
 ---
 
 ## Introduction
 
 ### Project Overview
-This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). The project aims to [**insert your specific research question/objective here**].
+This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). Climate change increases extreme weather and flood risks, and insurance companies are abandoning properties as risks increase. And as climate change worsens, flood risks are only projected to increase. [“Because flooding is the primary vector of economic damages inflicted on local communities as demonstrated by the 2016-2019 hurricane seasons, and given the projected increase in destructive flooding as a result of climate change, there's an enormous need to more efficiently distribute financial risk due to climate change.”](https://www.kaggle.com/datasets/lynma01/femas-national-flood-insurance-policy-database)
 
 ### Data Source
-The dataset originates from the [FEMA OpenFEM platform](https://www.fema.gov/openfem), containing comprehensive NFIP policy information. The original dataset comprises 70+ million rows, making this a large-scale data analysis challenge.
+As of March 2026, the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) comprises 70+ million rows of comprehensive NFIP policy information, making this a large-scale data analysis challenge.
 
 ### Objectives
 - **Primary Goal**: [Define your main analytical or predictive objective]
@@ -28,10 +26,11 @@ The dataset originates from the [FEMA OpenFEM platform](https://www.fema.gov/ope
 - **Key Stakeholders**: Insurance professionals, FEMA analysts, risk assessment teams
 
 ### Dataset Overview
-- **Total Records in Full Dataset**: 70+ million rows
-- **Sampled Training Data**: [Specify number of rows]
-- **Sampled Test Data**: [Specify number of rows]
-- **Key Features**: [Brief description of important variables]
+- **Total Records in Full Dataset**: 72583994 rows as of March 2026
+- **Sampled Training Data**: 356837
+- **Sampled Test Data**: 356675
+- **Target Variable**: `policyCost`
+- **Features**: See details in the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2)
 
 ---
 
@@ -45,9 +44,10 @@ Data wrangling prepares the raw NFIP data for analysis by addressing inconsisten
 
 1. **Data Extraction**: Downloaded and accessed the `FimaNfipPoliciesV2.parquet` file from FEMA's OpenFEM platform
 2. **Sampling Strategy**: 
-   - Sampled representative subsets from the 70+ million row dataset
-   - [Specify sampling methodology, e.g., stratified sampling, random sampling, time-based sampling]
-   - Created balanced train/test splits for modeling
+   - Sampled representative subsets from the 70+ million row dataset via hash-based deterministic sampling
+   - Train: hash(idx+42) % 200 = 0 (~0.5%)
+   - Test: hash(idx+42) % 200 = 1 (~0.5%)
+   - No sort - streams through data; reproducible as long as original parquet is unchanged
 
 **File**: `datawrangling.ipynb`
 
@@ -312,7 +312,7 @@ This project successfully analyzed [number] records from the FEMA NFIP dataset t
 
 ---
 
-## Future Steps
+## Possible Future Steps
 
 ### Short-term Improvements (Next 1-3 months)
 1. **Model Enhancement**
@@ -370,85 +370,6 @@ This project successfully analyzed [number] records from the FEMA NFIP dataset t
 
 ---
 
-## Project Structure
-
-```
-Capstone2_FEMA_NFIPD/
-├── README.md                          # This file
-├── sample.ipynb                        # Data sampling from 70M+ row dataset
-├── datawrangling.ipynb                 # Data cleaning and preparation
-├── eda.ipynb                           # Exploratory data analysis
-├── preprocessing.ipynb                 # Feature engineering & preprocessing
-├── modeling.ipynb                      # Model development & evaluation
-├── model_metrics.txt                   # Detailed model performance metrics
-├── data/
-│   ├── FimaNfipPoliciesV2.parquet     # Original dataset (sampled)
-│   ├── train_data_clean.parquet       # Cleaned training data
-│   ├── test_data_clean.parquet        # Cleaned test data
-│   ├── train_data_processed.parquet   # Preprocessed training data
-│   └── test_data_processed.parquet    # Preprocessed test data
-├── models/
-│   ├── model1.pkl                     # Serialized model 1
-│   ├── model2.pkl                     # Serialized model 2
-│   ├── model3.pkl                     # Serialized model 3
-│   ├── model4.pkl                     # Serialized model 4
-│   ├── model5.pkl                     # Serialized model 5
-│   └── model6.pkl                     # Serialized model 6
-├── output/
-│   ├── eda_visualizations/            # EDA charts and plots
-│   └── model_comparison.csv           # Model performance comparison
-└── requirements.txt                    # Python dependencies
-```
-
----
-
-## Getting Started
-
-### Prerequisites
-- Python 3.8 or higher
-- Jupyter Notebook or JupyterLab
-- Required libraries: see `requirements.txt`
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/robertwzhou/Capstone2_FEMA_NFIPD.git
-   cd Capstone2_FEMA_NFIPD
-   ```
-
-2. **Create a virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Running the Analysis
-
-1. **Start Jupyter**
-   ```bash
-   jupyter notebook
-   ```
-
-2. **Execute notebooks in order**
-   - `sample.ipynb` - Data sampling
-   - `datawrangling.ipynb` - Data preparation
-   - `eda.ipynb` - Exploratory analysis
-   - `preprocessing.ipynb` - Feature engineering
-   - `modeling.ipynb` - Model development
-
-### Key Files
-- **Model Metrics**: View detailed performance in `model_metrics.txt`
-- **Visualizations**: Check `output/eda_visualizations/` for charts and plots
-- **Data**: Raw and processed datasets in `data/` directory
-
----
-
 ## Contact & Support
 
 **Project Owner**: Robert W. Zhou  
@@ -461,16 +382,11 @@ Capstone2_FEMA_NFIPD/
 - Review individual notebook comments for detailed methodology
 
 ---
-
-## License
-[Specify your license - MIT, Apache 2.0, etc., or note if using public FEMA data]
-
 ## Acknowledgments
-- Data source: [FEMA OpenFEM Platform](https://www.fema.gov/openfem)
-- [Any collaborators or institutions]
-- [Any references or papers used]
+- Mentor: [Ale Berbesi](https://www.linkedin.com/in/alejandra-berbesi-becerra/)
+- Data source: [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) as of March 2026
 
 ---
 
 **Last Updated**: May 18, 2026  
-**Project Status**: [In Progress / Completed / Archived]
+**Project Status**: Completed
