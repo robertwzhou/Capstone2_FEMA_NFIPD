@@ -9,16 +9,17 @@
 6. [Results & Findings](#results--findings)
 7. [Conclusion](#conclusion)
 8. [Possible Future Steps](#possible-future-steps)
+9. [Presentation Slides](#presentation-slides)
 
 ---
 
 ## Introduction
 
 ### Project Overview
-This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). Climate change increases extreme weather and flood risks, and insurance companies are abandoning properties as risks increase. And as climate change worsens, flood risks are only projected to increase. [“Because flooding is the primary vector of economic damages inflicted on local communities as demonstrated by the 2016-2019 hurricane seasons, and given the projected increase in destructive flooding as a result of climate change, there's an enormous need to more efficiently distribute financial risk due to climate change.”](https://www.kaggle.com/datasets/lynma01/femas-national-flood-insurance-policy-database)
+This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). Climate change increases extreme weather and f[...]
 
 ### Data Source
-As of March 2026, the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) comprises 70+ million rows of comprehensive NFIP policy information, making this a large-scale data analysis challenge.
+As of March 2026, the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) comprises 70+ million rows of comprehensive NFIP policy information, making this a [...]
 
 ### Objectives
 - **Primary Goal**: [Define your main analytical or predictive objective]
@@ -286,7 +287,7 @@ Detailed metrics are available in: `model_metrics.txt`
 ## Conclusion
 
 ### Summary of Findings
-This project successfully analyzed [number] records from the FEMA NFIP dataset to [state your objective]. Through systematic data exploration, preprocessing, and modeling, we developed six distinct machine learning models to [describe what the models do].
+This project successfully analyzed [number] records from the FEMA NFIP dataset to [state your objective]. Through systematic data exploration, preprocessing, and modeling, we developed six distin[...]
 
 ### Key Achievements
 1. **Data Processing**: Successfully sampled and cleaned [number] records from a 70+ million row dataset
@@ -309,6 +310,34 @@ This project successfully analyzed [number] records from the FEMA NFIP dataset t
 - Model is suitable for [specific use cases]
 - Consider [specific caveats] when deploying this model
 - Regular retraining recommended [frequency] due to [reasons]
+
+---
+
+## Presentation Slides
+
+### Project Overview and Key Findings
+Below are the presentation slides from the capstone project delivery:
+
+![Slide 1](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-0.jpg)
+![Slide 2](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-1.jpg)
+![Slide 3](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-2.jpg)
+![Slide 4](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-3.jpg)
+![Slide 5](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-4.jpg)
+![Slide 6](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-5.jpg)
+![Slide 7](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-6.jpg)
+![Slide 8](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-7.jpg)
+![Slide 9](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-8.jpg)
+![Slide 10](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-9.jpg)
+![Slide 11](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-10.jpg)
+![Slide 12](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-11.jpg)
+![Slide 13](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-12.jpg)
+![Slide 14](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-13.jpg)
+![Slide 15](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-14.jpg)
+![Slide 16](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-15.jpg)
+![Slide 17](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-16.jpg)
+![Slide 18](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-17.jpg)
+![Slide 19](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-18.jpg)
+![Slide 20](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-19.jpg)
 
 ---
 
