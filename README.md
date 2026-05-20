@@ -1,4 +1,5 @@
 # FEMA NFIP Data Analysis Capstone Project
+![Slide 1](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-0.jpg)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -9,21 +10,22 @@
 6. [Results & Findings](#results--findings)
 7. [Conclusion](#conclusion)
 8. [Possible Future Steps](#possible-future-steps)
-9. [Presentation Slides](#presentation-slides)
 
 ---
 
 ## Introduction
 
 ### Project Overview
-This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). Climate change increases extreme weather and f[...]
+This capstone project analyzes data from the National Flood Insurance Program (NFIP), administered by the Federal Emergency Management Agency (FEMA). Climate change increases extreme weather and flood risks, and insurance companies are abandoning properties as risks increase. And as climate change worsens, flood risks are only projected to increase. [“Because flooding is the primary vector of economic damages inflicted on local communities as demonstrated by the 2016-2019 hurricane seasons, and given the projected increase in destructive flooding as a result of climate change, there's an enormous need to more efficiently distribute financial risk due to climate change.”](https://www.kaggle.com/datasets/lynma01/femas-national-flood-insurance-policy-database)
+
+![Slide 2](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-1.jpg)
 
 ### Data Source
-As of March 2026, the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) comprises 70+ million rows of comprehensive NFIP policy information, making this a [...]
+As of March 2026, the [OpenFEMA dataset](https://www.fema.gov/openfema-data-page/fima-nfip-redacted-policies-v2) comprises 70+ million rows of comprehensive NFIP policy information, making this a large scale data analysis challenge.
 
 ### Objectives
-- **Primary Goal**: [Define your main analytical or predictive objective]
-- **Secondary Goals**: [List any supporting objectives]
+- **Primary Goal**: Explore the features most relevant to `policyCost`
+- **Secondary Goals**: Observe other features or trends that could be useful for future analysis
 - **Key Stakeholders**: Insurance professionals, FEMA analysts, risk assessment teams
 
 ### Dataset Overview
@@ -55,32 +57,15 @@ Data wrangling prepares the raw NFIP data for analysis by addressing inconsisten
 3. **Data Cleaning**:
    - Identified and handled missing values
    - Removed duplicate records
-   - [List any specific data quality issues addressed]
+   - Over 80 columns, many of which were missing many values
+   - Only kept latitude, longitude, and all columns with fewer missing values than those
+   - Other outliers I removed include dates before the earliest valid `datetime[ns]`
 
-4. **Data Type Conversions**:
-   - Standardized date formats
-   - Converted categorical variables
-   - Ensured numeric precision where needed
-
-5. **Feature Engineering**:
-   - [Describe any new features created during wrangling]
-   - [Explain domain-specific transformations]
-
-6. **Data Validation**:
-   - Verified data integrity across sampled train and test sets
-   - Checked for data leakage
-   - Validated statistical properties
-
-### Key Challenges & Solutions
-| Challenge | Solution |
-|-----------|----------|
-| [Issue 1] | [Resolution] |
-| [Issue 2] | [Resolution] |
-| [Issue 3] | [Resolution] |
+![Slide 4](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-3.jpg)
 
 ### Output
-- Cleaned training dataset: `[output_filename]`
-- Cleaned test dataset: `[output_filename]`
+- Cleaned training dataset: `datawrangling_train.parquet`
+- Cleaned test dataset: `datawrangling_test.parquet`
 
 ---
 
@@ -93,45 +78,33 @@ EDA investigates the structure, distribution, and relationships within the NFIP 
 
 ### Key Analyses Performed
 
-#### 1. **Univariate Analysis**
-- Distribution of individual features (histograms, box plots, density plots)
-- [Specific insights about key variables]
+#### **Bivariate & Multivariate Analysis**
+![heatmap](Capstone_Presentation/heatmap.png)
+![pairplot](Capstone_Presentation/pairplot.png)
+- Correlations with policyCost:
+   - policyCost                          1.000000
+   - totalInsurancePremiumOfThePolicy    0.993556
+   - reserveFundAssessment               0.842859
+   - totalBuildingInsuranceCoverage      0.508772
+   - policyCount                         0.490588
+   - federalPolicyFee                    0.464107
+   - hfiaaSurcharge                      0.239486
+   - policyTerminationDate               0.112648
+   - policyEffectiveDate                 0.112647
+   - totalContentsInsuranceCoverage      0.053317
+   - latitude                            0.049968
+   - longitude                           0.033054
+   - originalNBDate                      0.006363
+   - originalConstructionDate           -0.094056
+- Financial variables most correlated with policyCost
 
-#### 2. **Bivariate & Multivariate Analysis**
-- Correlations between key variables
-- Relationships among [specific feature groups]
-- [Notable patterns discovered]
-
-#### 3. **Categorical Variable Analysis**
-- Frequency distributions of policy types, coverage levels, states
-- [Key categorical insights]
-
-#### 4. **Geographic Analysis**
+#### **Geographic Analysis**
 - Regional patterns in policy distribution
 - Risk concentration by state/district
-- [Geographic findings]
+- Handled outliers in the UK and Colombia
 
-#### 5. **Temporal Trends** (if applicable)
-- Historical policy trends
-- Seasonal patterns
-- [Temporal insights]
-
-### Key Findings
-- **Finding 1**: [Description and impact]
-- **Finding 2**: [Description and impact]
-- **Finding 3**: [Description and impact]
-
-### Visualizations
-Key visualizations created include:
-- Distribution plots of major features
-- Correlation heatmaps
-- Geographic risk maps
-- Trend analysis charts
-
-### Missing Data Analysis
-- Percentage of missing values by column
-- Patterns in missingness
-- Imputation strategy decisions
+![Slide 5](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-4.jpg)
+![Slide 6](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-5.jpg)
 
 ---
 
@@ -144,140 +117,36 @@ Preprocessing transforms the analyzed data into machine-learning-ready features 
 
 ### Steps Performed
 
-#### 1. **Feature Selection**
+#### 1. **Feature Engineering**
+![Slide 7](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-6.jpg)
+![Slide 8](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-7.jpg)
+![Slide 9](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-8.jpg)
+![Slide 10](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-9.jpg)
+![Slide 11](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-10.jpg)
 - Applied domain knowledge to select relevant features
-- Removed highly correlated features (correlation threshold: [value])
-- [Any feature importance analysis results]
+- Dummy encoding categorical variables
+- Removed highly correlated features to avoid multicollinearity
+   - `policyCost` = `totalInsurancePremiumOfThePolicy` + `reserveFundAssessment` + `federalPolicyFee` + `hfiaaSurcharge`
 
 #### 2. **Scaling & Normalization**
-- Applied [StandardScaler/MinMaxScaler/other] to numeric features
-- Rationale: [Explain why this scaling was chosen]
-
-#### 3. **Encoding Categorical Variables**
-- [One-hot encoding/Label encoding/Target encoding] for categorical features
-- Handling of [specific categorical challenges]
-
-#### 4. **Missing Value Imputation**
-- Strategy: [Describe imputation method: mean, median, KNN, etc.]
-- Reasoning: [Why this strategy was selected]
-- Features affected: [List key features]
-
-#### 5. **Outlier Handling**
-- Detection method: [IQR method/Z-score/other]
-- Treatment approach: [Removal/capping/transformation]
-- [Impact on data distribution]
-
-#### 6. **Train-Test Split Verification**
-- Ensured no data leakage between train and test sets
-- Verified stratification (if applicable)
-- Checked feature distributions across splits
-
-### Data Quality Metrics
-| Metric | Train Set | Test Set |
-|--------|-----------|----------|
-| Record Count | [N] | [N] |
-| Missing Values (%) | [%] | [%] |
-| Feature Dimensions | [N] | [N] |
+![Slide 12](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-11.jpg)
+- Problem: latitude and longitude are cyclical
+   - Solution: cyclical encoding by projecting latitude and longitude onto 3D Cartesian coordinates
+- Problem: numerical features are skewed
+   - Solution: reflecting left skewed data, then log transforming all (right) skewed data
+- Problem: features have different scales
+   - Solution: `StandardScaler`
 
 ### Output
-- Preprocessed training features: `[filename]`
-- Preprocessed test features: `[filename]`
-- Preprocessing pipeline/scaler objects: `[filename]`
+- Preprocessed training features: `preprocessing_train.parquet`
+- Preprocessed test features: `preprocessing_test.parquet`
 
 ---
 
 ## Modeling
-
-### Overview
-Multiple machine learning models were developed to [**insert your predictive/analytical objective**]. This ensemble approach allows for robust performance evaluation and comparison.
-
-**File**: `modeling.ipynb`
-
-### Models Developed
-
-#### 1. **[Model Name 1]** (e.g., Logistic Regression)
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-- **Rationale**: [Domain-specific considerations]
-
-#### 2. **[Model Name 2]** (e.g., Random Forest)
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-- **Rationale**: [Domain-specific considerations]
-
-#### 3. **[Model Name 3]** (e.g., Gradient Boosting)
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-- **Rationale**: [Domain-specific considerations]
-
-#### 4. **[Model Name 4]**
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-
-#### 5. **[Model Name 5]**
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-
-#### 6. **[Model Name 6]**
-- **Type**: [Classification/Regression]
-- **Purpose**: [Why this model was chosen]
-- **Hyperparameters**: [Key parameters used]
-
-### Model Training Strategy
-- **Cross-Validation**: [e.g., 5-fold cross-validation]
-- **Hyperparameter Tuning**: [Grid search/Random search/Bayesian optimization]
-- **Class Imbalance Handling** (if applicable): [SMOTE/class weights/other]
-
-### Model Evaluation
-- **Train/Validation/Test Split**: [Specify proportions]
-- **Evaluation Metrics**: [e.g., Accuracy, Precision, Recall, F1, AUC, RMSE, MAE]
-- **Cross-validation Results**: [Summary of fold performance]
-
----
-
-## Results & Findings
-
-### Model Performance Comparison
-
-| Model | Metric 1 | Metric 2 | Metric 3 | Rank |
-|-------|----------|----------|----------|------|
-| [Model 1] | [Score] | [Score] | [Score] | [1-6] |
-| [Model 2] | [Score] | [Score] | [Score] | [1-6] |
-| [Model 3] | [Score] | [Score] | [Score] | [1-6] |
-| [Model 4] | [Score] | [Score] | [Score] | [1-6] |
-| [Model 5] | [Score] | [Score] | [Score] | [1-6] |
-| [Model 6] | [Score] | [Score] | [Score] | [1-6] |
-
-### Best Performing Model
-- **Model**: [Name]
-- **Key Metrics**: 
-  - [Metric 1]: [Value]
-  - [Metric 2]: [Value]
-  - [Metric 3]: [Value]
-- **Why It Performs Best**: [Explanation of success factors]
-
-### Feature Importance Analysis
-**Top 10 Most Influential Features** (for tree-based models):
-1. [Feature] - [Importance %]
-2. [Feature] - [Importance %]
-3. [Feature] - [Importance %]
-4. [Feature] - [Importance %]
-5. [Feature] - [Importance %]
-6. [Feature] - [Importance %]
-7. [Feature] - [Importance %]
-8. [Feature] - [Importance %]
-9. [Feature] - [Importance %]
-10. [Feature] - [Importance %]
-
-### Model Insights
-- **Key Insight 1**: [Interpretation of model behavior and business implications]
-- **Key Insight 2**: [Interpretation of model behavior and business implications]
-- **Key Insight 3**: [Interpretation of model behavior and business implications]
+![Slide 15](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-14.jpg)
+![Slide 16](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-15.jpg)
+![Slide 17](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-16.jpg)
 
 ### Performance Metrics File
 Detailed metrics are available in: `model_metrics.txt`
@@ -287,115 +156,24 @@ Detailed metrics are available in: `model_metrics.txt`
 ## Conclusion
 
 ### Summary of Findings
-This project successfully analyzed [number] records from the FEMA NFIP dataset to [state your objective]. Through systematic data exploration, preprocessing, and modeling, we developed six distin[...]
+This project successfully analyzed a representative sample of the FEMA NFIP dataset to explore its features in relation to `policyCost` through systematic data exploration, preprocessing, and modeling.
 
 ### Key Achievements
-1. **Data Processing**: Successfully sampled and cleaned [number] records from a 70+ million row dataset
-2. **Analysis**: Identified [X] key patterns and relationships in NFIP policy data
-3. **Modeling**: Developed 6 models with [best metric value] achieved on [metric name]
-4. **Insights**: Generated [number] actionable insights for [stakeholders/use cases]
-
-### Business Impact
-- **Operational**: [How these findings improve operations]
-- **Strategic**: [Strategic implications]
-- **Risk Management**: [Risk insights or improvements]
-
-### Limitations
-- [Limitation 1 and mitigation]
-- [Limitation 2 and mitigation]
-- [Limitation 3 and mitigation]
+1. **Data Processing**: Successfully sampled and cleaned representative sample of a 70+ million row dataset
+2. **Analysis**: Identified features that can contribute to predicting `policyCost`
+3. **Modeling**: Developed 6 models with the best MSE achieved on the Random Forests model
 
 ### Model Reliability & Considerations
-- Best performing model shows [metric] performance on test data
-- Model is suitable for [specific use cases]
-- Consider [specific caveats] when deploying this model
-- Regular retraining recommended [frequency] due to [reasons]
-
----
-
-## Presentation Slides
-
-### Project Overview and Key Findings
-Below are the presentation slides from the capstone project delivery:
-
-![Slide 1](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-0.jpg)
-![Slide 2](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-1.jpg)
-![Slide 3](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-2.jpg)
-![Slide 4](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-3.jpg)
-![Slide 5](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-4.jpg)
-![Slide 6](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-5.jpg)
-![Slide 7](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-6.jpg)
-![Slide 8](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-7.jpg)
-![Slide 9](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-8.jpg)
-![Slide 10](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-9.jpg)
-![Slide 11](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-10.jpg)
-![Slide 12](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-11.jpg)
-![Slide 13](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-12.jpg)
-![Slide 14](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-13.jpg)
-![Slide 15](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-14.jpg)
-![Slide 16](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-15.jpg)
-![Slide 17](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-16.jpg)
-![Slide 18](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-17.jpg)
-![Slide 19](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-18.jpg)
-![Slide 20](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-19.jpg)
+- Best performing model shows $R^2=0.5058$ on test data
+- Model is suitable for exploring data, but not reliable for actual predictions
+- Consider developing models for other purposes (e.g. predicting `policyCost` increase with time)
 
 ---
 
 ## Possible Future Steps
 
-### Short-term Improvements (Next 1-3 months)
-1. **Model Enhancement**
-   - Implement ensemble techniques (stacking, voting) to improve performance
-   - Conduct more extensive hyperparameter tuning
-   - Explore deep learning approaches
-
-2. **Feature Engineering**
-   - Create additional domain-specific features based on stakeholder feedback
-   - Investigate non-linear feature transformations
-   - Develop interaction terms for key variable combinations
-
-3. **Data Expansion**
-   - Incorporate additional external data sources (weather, demographic data)
-   - Extend temporal analysis with historical trend data
-   - Increase sample size for improved generalization
-
-### Medium-term Initiatives (3-12 months)
-1. **Productionization**
-   - Develop API endpoints for model inference
-   - Create monitoring and alert systems for model performance degradation
-   - Implement automated retraining pipeline
-
-2. **Advanced Analytics**
-   - Conduct causal inference analysis
-   - Perform clustering analysis for policy segmentation
-   - Develop scenario planning models
-
-3. **Stakeholder Integration**
-   - Deploy interactive dashboards for business users
-   - Establish feedback loops with FEMA analysts
-   - Create documentation for non-technical stakeholders
-
-### Long-term Vision (12+ months)
-1. **Real-time System**
-   - Build real-time prediction system for incoming policies
-   - Integrate with existing FEMA systems
-   - Develop mobile-friendly interfaces
-
-2. **Advanced Techniques**
-   - Incorporate reinforcement learning for dynamic policy optimization
-   - Explore graph neural networks for relational data
-   - Develop explainable AI (XAI) frameworks
-
-3. **Research Opportunities**
-   - Publish findings in peer-reviewed journals
-   - Collaborate with academic institutions
-   - Contribute findings to FEMA policy discussions
-
-### Technical Debt & Maintenance
-- [ ] Code refactoring and modularity improvements
-- [ ] Comprehensive test suite development
-- [ ] Documentation updates
-- [ ] Pipeline optimization for scalability
+![Slide 20](Capstone_Presentation/970f4cf3-3373-40e3-bb44-c0371103186c-19.jpg)
+- Consider integrating other datasets (e.g. greenhouse gas pollution)
 
 ---
 
@@ -417,5 +195,5 @@ Below are the presentation slides from the capstone project delivery:
 
 ---
 
-**Last Updated**: May 18, 2026  
+**Last Updated**: May 19, 2026  
 **Project Status**: Completed
